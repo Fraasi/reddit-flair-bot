@@ -1,0 +1,16 @@
+{
+  "name": "reddit-flair-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rsuomiflairbot.js",
+  "dependencies": {
+    "snoowrap": "^1.14.2",
+    "node-fetch": "^1.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fraasi",
+  "license": "ISC"
+}

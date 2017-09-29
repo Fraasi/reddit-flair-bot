@@ -13,7 +13,7 @@ function msToTime(duration) {
 function msUntillCodeRuns() {
 	let now = new Date();
 	let then = new Date(now);
-	then.setHours(23, 0, 0, 0);	//when to run
+	then.setHours(20, 0, 0, 0);	//when to run
 	if (then - now <= 0) then.setDate(now.getDate() + 1);
 	let msToRunTime = then - now;
 	console.log(`${msToTime(msToRunTime)} to runtime.`);

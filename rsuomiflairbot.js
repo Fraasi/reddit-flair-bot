@@ -1,12 +1,23 @@
+function msToTime(duration) {
+	// from https://stackoverflow.com/questions/19700283/how-to-convert-time-milliseconds-to-hours-min-sec-format-in-javascript
+	var milliseconds = parseInt((duration%1000)/100)
+		, seconds = parseInt((duration/1000)%60)
+		, minutes = parseInt((duration/(1000*60))%60)
+		, hours = parseInt((duration/(1000*60*60))%24);
+	hours = (hours < 10) ? "0" + hours : hours;
+	minutes = (minutes < 10) ? "0" + minutes : minutes;
+	seconds = (seconds < 10) ? "0" + seconds : seconds;
+	return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+}
 
-setInterval(checkTime, 2500000); // 40min
-
-function checkTime() {
+function msUntillCodeRuns() {
 	let now = new Date();
-	if (now.getHours() === 23) {
-		console.log('Posting time: ', now);
-		postFlairData();
-	}
+	let then = new Date(now);
+	then.setHours(18, 39, 0, 0);	//when to run
+	if (then - now <= 0) then.setDate(now.getDate() + 1);
+	let msToRunTime = then - now;
+	console.log(`${msToTime(msToRunTime)} to runtime.`);
+	return msToRunTime;
 }
 
 function postFlairData() {
@@ -75,15 +86,18 @@ ilman flairia ${noFlairCount} postausta ${flairLength}:sta.`;
 
 			titleString = `${titleString} ${flairiest}.`;
 
-			r.getSubreddit('u_rSuomiFlairBot')
-				.submitSelfpost({title: titleString, text: textString})
+			// r.getSubreddit('u_rSuomiFlairBot')
+				// .submitSelfpost({title: titleString, text: textString})
 				
 			// r.getUser('rSuomiFlairBot').fetch().then( user => console.log(user))
-			// for debuggin syntax
-			// console.log(titleString);
-			// console.log(textString);
+			// for debuggin markdown syntax
+			console.log(titleString);
+			console.log(textString);
+			setTimeout(postFlairData, msUntillCodeRuns());
 		})
 		.catch( (err) => {
 			console.log('oh noes: ', err);
 		})
 }
+
+setTimeout(postFlairData, msUntillCodeRuns());

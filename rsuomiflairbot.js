@@ -13,7 +13,7 @@ function msToTime(duration) {
 function msUntillCodeRuns() {
 	let now = new Date();
 	let then = new Date(now);
-	then.setHours(20, 0, 0, 0);	//when to run
+	then.setHours(20, 0, 0, 0);	//when to runs
 	if (then - now <= 0) then.setDate(now.getDate() + 1);
 	let msToRunTime = then - now;
 	console.log(`${now} | ${msToTime(msToRunTime)} to runtime.`);
@@ -86,13 +86,13 @@ ilman flairia ${noFlairCount} postausta ${flairLength}:sta.`;
 
 			titleString = `${titleString} ${flairiest}.`;
 
-			// r.getSubreddit('u_rSuomiFlairBot')
-				// .submitSelfpost({title: titleString, text: textString})
+			r.getSubreddit('u_rSuomiFlairBot')
+				.submitSelfpost({title: titleString, text: textString})
 				
 			// r.getUser('rSuomiFlairBot').fetch().then( user => console.log(user))
 			// for debuggin markdown syntax
-			console.log(titleString);
-			console.log(textString);
+			// console.log(titleString);
+			// console.log(textString);
 			setTimeout(postFlairData, msUntillCodeRuns());
 		})
 		.catch( (err) => {

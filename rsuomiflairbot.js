@@ -16,7 +16,7 @@ function msUntillCodeRuns() {
 	then.setHours(20, 0, 0, 0);	//when to run
 	if (then - now <= 0) then.setDate(now.getDate() + 1);
 	let msToRunTime = then - now;
-	console.log(`${msToTime(msToRunTime)} to runtime.`);
+	console.log(`${now} | ${msToTime(msToRunTime)} to runtime.`);
 	return msToRunTime;
 }
 

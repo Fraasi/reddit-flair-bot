@@ -13,7 +13,7 @@ function msToTime(duration) {
 function msUntillCodeRuns() {
 	let now = new Date();
 	let then = new Date(now);
-	then.setHours(20, 0, 0, 0);	//when to runs
+	then.setHours(20, 0, 0, 0);	//when to run, utc
 	if (then - now <= 0) then.setDate(now.getDate() + 1);
 	let msToRunTime = then - now;
 	console.log(`${now} | ${msToTime(msToRunTime)} to runtime.`);
@@ -41,7 +41,7 @@ function postFlairData() {
 	//build title
 	let date = new Date();
 	let minutes = date.getMinutes();
-	let hours = date.getHours();
+	let hours = date.getHours() + 3;
 	let titleString = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} Klo ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
 
 	let textString = '';

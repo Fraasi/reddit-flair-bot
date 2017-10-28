@@ -41,7 +41,7 @@ function postFlairData() {
 	//build title
 	let date = new Date();
 	let minutes = date.getMinutes();
-	let hours = date.getHours() + 3;
+	let hours = date.getHours() + 3;	// utc fix
 	let titleString = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} Klo ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
 
 	let textString = '';
